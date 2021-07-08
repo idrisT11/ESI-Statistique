@@ -1,5 +1,20 @@
 const nameSpace = "http://www.w3.org/2000/svg";
 
+const   POS_ZERO_GRAPH = {
+            x: 5,
+            y: 92
+        },
+        POS_OX_GRAPH = {
+            x: 92,
+            y: POS_ZERO_GRAPH.y
+        },
+        POS_OY_GRAPH = {
+            x: POS_ZERO_GRAPH.x,
+            y: 5,
+        };
+
+
+
 class Axes{
 
     constructor(screen, graphInput, precision, axeX, axeY){
@@ -16,8 +31,6 @@ class Axes{
         if (kulech) 
             this.drawAxes();
         
-        
-
         let echelonTable = this.drawEchelons();
         this.drawEchelonsLabel(echelonTable.x, echelonTable.y, echelonTable.maxY);
 
@@ -38,18 +51,18 @@ class Axes{
         axeX_svg.setAttribute('stroke', 'rgba(4, 2, 2, 0.5)');
         axeX_svg.setAttribute('stroke-width', '2px');
         axeX_svg.setAttribute('id', 'svg-line');
-        axeX_svg.setAttribute('x1', '5%');
-        axeX_svg.setAttribute('y1', '92%');
-        axeX_svg.setAttribute('x2', '92%');
-        axeX_svg.setAttribute('y2', '92%');
+        axeX_svg.setAttribute('x1', POS_ZERO_GRAPH.x + '%');
+        axeX_svg.setAttribute('y1', POS_ZERO_GRAPH.y + '%');
+        axeX_svg.setAttribute('x2', POS_OX_GRAPH.x + '%');
+        axeX_svg.setAttribute('y2', POS_OX_GRAPH.y + '%');
 
         axeY_svg.setAttribute('stroke', 'rgba(4, 2, 2, 0.5)');
         axeY_svg.setAttribute('stroke-width', '2px');
         axeY_svg.setAttribute('id', 'svg-line');
-        axeY_svg.setAttribute('x1', '5%');
-        axeY_svg.setAttribute('y1', '5%');
-        axeY_svg.setAttribute('x2', '5%');
-        axeY_svg.setAttribute('y2', '92%');
+        axeY_svg.setAttribute('x1', POS_ZERO_GRAPH.x + '%');
+        axeY_svg.setAttribute('y1', POS_ZERO_GRAPH.y + '%');
+        axeY_svg.setAttribute('x2', POS_OY_GRAPH.x + '%');
+        axeY_svg.setAttribute('y2', POS_OY_GRAPH.y + '%');
 
         this.screen.appendChild(axeX_svg);
         this.screen.appendChild(axeY_svg);
@@ -180,8 +193,6 @@ class Axes{
 
         function generateTextX(i, precision) {
             let str = '[';
-
-            
 
             str += precision * i;
             str += ':';
