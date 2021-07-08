@@ -28,6 +28,21 @@
 
     <main>
 
+        <div id="Interface">
+            <div id="precision_button_ctn">
+                <button class="precision_button">0.25</button>
+                <button class="precision_button">0.5</button>
+                <button class="precision_button">1</button>
+                <button class="precision_button">2</button>
+                <button class="precision_button">5</button>
+                <button class="precision_button">10</button>
+            </div>
+            
+            <div id="switch_ctn">
+            
+            </div>
+        </div>
+
         <div id="screen">
             <svg id="graph">
                 <rect width="100%" height="100%" fill="#FAFAFE"></rect>
@@ -63,6 +78,15 @@
         .graphRect:hover{
             filter: drop-shadow(  0px 0px 10px black);
 
+        }
+
+        .graphLine{
+            filter: drop-shadow(  -0px 0px 10px rgba(0, 0, 0, 0.25));
+        }
+
+        .graphPoint:hover{
+            fill: whitesmoke;
+            stroke-width: 0.1%;
         }
 
     </style>
