@@ -12,8 +12,11 @@ class Axes{
 
     }
 
-    draw(){
-        this.drawAxes();
+    draw(kulech){
+        if (kulech) 
+            this.drawAxes();
+        
+        
 
         let echelonTable = this.drawEchelons();
         this.drawEchelonsLabel(echelonTable.x, echelonTable.y, echelonTable.maxY);
@@ -21,6 +24,11 @@ class Axes{
         this.writeAxesNames();
 
         this.drawReferenceLines(echelonTable.y);
+
+        return {
+            x: echelonTable.x,
+            y: echelonTable.y
+        }
     }
 
     drawAxes(){
@@ -58,8 +66,8 @@ class Axes{
         
         let arr_echelonX_svg = new Array( nbEchelon_X );
 
-        let posEchelonZero_X = 10, // The position of the first echelon to the left ( in '%' )
-            posEchelonLast_X = 100,
+        let posEchelonZero_X = 8, // The position of the first echelon to the left ( in '%' )
+            posEchelonLast_X = 92,
 
             stepSize_X = (posEchelonLast_X - posEchelonZero_X) / nbEchelon_X;
         
@@ -85,7 +93,7 @@ class Axes{
         //Draws the echelons on the Y axis
         //=======================================================================
         let max_y_value = Math.max( ... this.graphInput ),
-            max_effective_y = max_y_value - (max_y_value % 100) + 100;//On arrondie par rapport à 100 par le haut
+            max_effective_y = getEffectiveMax(max_y_value);//On arrondie par rapport à 100 par le haut
         
         //Ayeh print();
 
@@ -171,12 +179,9 @@ class Axes{
         }
 
         function generateTextX(i, precision) {
-            let str = '';
+            let str = '[';
 
-            if (i == 0) 
-                str += '[';
-            else
-                str += ']';
+            
 
             str += precision * i;
             str += ':';
@@ -205,6 +210,8 @@ class Axes{
         labelAxeX.setAttribute('text-anchor', 'end');
         labelAxeX.setAttribute('id', 'svg-axe-label');
         labelAxeX.setAttribute('font-weight', 'bolder');
+        labelAxeX.setAttribute('font-family', 'Arial');
+
         labelAxeX.setAttribute('x', '92%');
         labelAxeX.setAttribute('y', '95%');
 
@@ -212,6 +219,8 @@ class Axes{
         labelAxeY.setAttribute('id', 'svg-axe-label');
         labelAxeY.setAttribute('text-anchor', 'middle');
         labelAxeY.setAttribute('font-weight', 'bolder');
+        labelAxeY.setAttribute('font-family', 'Arial');
+
         //labelAxeY.setAttribute('textLength', '4%');
 
         labelAxeY.setAttribute('x', '5.5%');
