@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESI Statistiques</title>
+</head>
+<body>
+    <!--    
+    <header>
+        <h1>ESI-STAT</h1>
+        <nav>
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">ESI-SBA</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">ESTIN</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    -->
+
+    <main>
+
+        <div id="screen">
+            <svg id="graph">
+                <rect width="100%" height="100%" fill="#FAFAFE"></rect>
+            </svg>
+
+        </div>
+
+
+    </main>
+
+    <script src="Grapher.js"></script>
+    <script src="Axes.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+        body, html, main, #screen, #graph{
+            margin: 0;
+            padding: 0;
+
+            height: 100%;
+            width: 100%;
+        }
+
+        #svg-line{
+            filter: drop-shadow(  -2px 2px 3px black);
+        }
+        #svg-axe-label{
+            text-decoration: underline;
+        }
+
+    </style>
+
+</body>
+</html>
