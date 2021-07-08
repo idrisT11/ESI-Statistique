@@ -32,7 +32,9 @@ class Grapher{
     draw(){
         let echelons = this.axes.draw(true);
 
-        this.drawRectGraph( echelons.x, echelons.y );
+        //this.drawRectGraph( echelons.x, echelons.y );
+
+        this.drawLineGraph( echelons.x, echelons.y );
 
         //this.axes.drawAxes();
         //this.axes.drawEchelons();
@@ -65,7 +67,7 @@ class Grapher{
 
 
             rect_tab_svg[i].setAttribute('x', x + '%');
-            rect_tab_svg[i].setAttribute('y', 92-height + '%');
+            rect_tab_svg[i].setAttribute('y', POS_ZERO_GRAPH.y - height + '%');
             rect_tab_svg[i].setAttribute('width', width + '%');
             rect_tab_svg[i].setAttribute('height', height + '%');
             
@@ -74,14 +76,6 @@ class Grapher{
             this.screen.appendChild(rect_tab_svg[i]);
         }
 
-
-        for (let i = 0; i < rect_tab_svg.length; i++) {
-            rect_tab_svg[i].addEventListener('mouseenter', (e)=>{
-
-
-            })
-            
-        }
 
         function computeHeight(echelon_Y_table, graphMax, currentValue) 
         {
@@ -96,8 +90,79 @@ class Grapher{
         }
     }
 
-    drawLineGraph(echelon_X_table, echelon_Y_table){
+    drawLineGraph(echelon_X_table, echelon_Y_table)
+    {
 
+        var point_tab_svg = new Array( 20 / this.precision );
+
+        var posTable = new Array( 20 / this.precision );
+
+        let graphMax = Math.max( ... this.graphInput );
+
+
+        for (let i = point_tab_svg.length-1; i >= 0; i--) 
+        {
+                        
+            let height = computeHeight(echelon_Y_table, graphMax, this.graphInput[i]);
+
+            let x = (echelon_X_table[i+1] + echelon_X_table[i]) / 2,
+                y = POS_ZERO_GRAPH.y - height;
+            
+            posTable[i] = {x:x, y:y};
+
+            point_tab_svg[i] = document.createElementNS( nameSpace, 'circle');
+            
+            point_tab_svg[i].setAttribute('class', 'graphPoint');
+            point_tab_svg[i].setAttribute('fill', '#00adcc');
+            point_tab_svg[i].setAttribute('stroke', '#00adcc');
+            point_tab_svg[i].setAttribute('stroke-width', '0.4%');
+
+            point_tab_svg[i].setAttribute('cx', x + '%');
+            point_tab_svg[i].setAttribute('cy', y + '%');
+            point_tab_svg[i].setAttribute('r', 0.4 + '%');            
+            
+
+            
+        }
+
+
+        //LINE GENERATION
+        let line_tab_svg = new Array(point_tab_svg.length-1);
+
+        for (let i = 0; i < line_tab_svg.length; i++) 
+        {
+
+            line_tab_svg[i] = document.createElementNS( nameSpace, 'line');
+            
+            line_tab_svg[i].setAttribute('class', 'graphLine');
+            line_tab_svg[i].setAttribute('stroke', '#00c9e5');
+            line_tab_svg[i].setAttribute('stroke-width', '0.4%');
+
+            line_tab_svg[i].setAttribute('x1', posTable[i].x + '%');
+            line_tab_svg[i].setAttribute('y1', posTable[i].y + '%');
+            line_tab_svg[i].setAttribute('x2', posTable[i+1].x + '%');
+            line_tab_svg[i].setAttribute('y2', posTable[i+1].y + '%');    
+            this.screen.appendChild(line_tab_svg[i]);    
+
+            this.screen.appendChild(point_tab_svg[i]);
+        }
+        
+        this.screen.appendChild(point_tab_svg[point_tab_svg.length-1]);
+
+            
+
+        
+        function computeHeight(echelon_Y_table, graphMax, currentValue) 
+        {
+            //TODO --
+            let etendu = echelon_Y_table[ echelon_Y_table.length - 1 ] - 2,
+                effectiveMax = getEffectiveMax(graphMax);
+
+            let rapport = currentValue / effectiveMax;
+
+            return etendu * rapport;
+
+        }
     }
 
 }
