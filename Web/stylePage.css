@@ -1,0 +1,169 @@
+@font-face {
+    font-family: 'GOGOIA_Deco';
+    src: url('font/GOGOIA_Deco.otf');
+}
+@font-face {
+    font-family: 'GOGOIA_Reg';
+    src: url('font/GOGOIA_Regular.otf');
+}
+@font-face {
+    font-family: 'Champagne_and_Limousines';
+    src: url('font/Champagne_and_Limousines.ttf');
+}
+
+/*************************HEADER**************************************/
+header{
+    display: flex;
+    box-shadow: 4px 0px 10px black;
+}
+
+header h1{
+    font-size: 35px;
+    flex: 3;
+    font-family: GOGOIA_Deco;
+    padding-left: 10px;
+    margin: 0;
+}
+header nav{
+    font-size: 10;
+    flex: 1;
+
+
+    text-align: end;
+}
+
+.nav-btn{
+    display: inline-block;
+
+    background-color: #00c9e4;
+    color: whitesmoke;
+    display: inline-block;
+    height: 100%;
+
+    font-family: Champagne_and_Limousines;
+
+    font-size: 30px;
+    border: 0;
+    margin: 0;
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/*************************MAIN**************************************/
+main{
+    display: flex;
+    height: 94%;
+}
+/*************************NAV**************************************/
+#navigation{
+    margin: 10px;
+    flex: 1;
+    box-shadow: 0px 5px 10px black;
+    margin-left: 0;
+
+    overflow-y: scroll;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+#navigation h3{
+    background-color: #00adcc;
+    color: whitesmoke;
+    font-size: 25px;
+    flex: 3;
+    font-family: Champagne_and_Limousines;
+    padding-left: 10px;
+    margin: 0;
+
+    padding: 10px;
+}
+#navigation h4{
+    font-size: 20px;
+    flex: 1;
+    font-family: Champagne_and_Limousines;
+    text-decoration: underline;
+    padding-left: 15px;
+    margin: 0;
+}
+#navigation h5{
+    font-size: 17px;
+    flex: 1;
+    font-family: Champagne_and_Limousines;
+    text-decoration: underline;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin: 0;
+}
+#navigation button{
+    font-size: 17px;
+    font-family: Champagne_and_Limousines;
+    border: 0;
+    text-align: center;
+    width: 100%;
+
+    padding: 2px;
+    border-bottom: 1px solid black;
+
+    cursor: pointer;
+
+}
+#navigation button:hover{
+    opacity: 0.5;
+
+}
+#selectedNavButton{
+    background-color: #00c9e5;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+/*************************app**************************************/
+#app{
+    flex:7;
+    height: 100%;
+}
+#graph, #screen{
+    height: 100%;
+}
+#Interface{
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+#precision_button_ctn{
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+}
+#cumulative_ctn{
+    position: fixed;
+    right: 20px;
+    top: 70px;
+}
+#entryArray_ctn{
+    position: fixed;
+    right: 20px;
+    top: 170px;   
+}
+#graph_mode_ctn{
+    position: fixed;
+    bottom: 230px;
+    right: 10px;  
+}
