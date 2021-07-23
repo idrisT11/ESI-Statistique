@@ -4,69 +4,166 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylePage.css">
     <title>ESI Statistiques</title>
 </head>
 <body>
-    <!--    
+     
     <header>
         <h1>ESI-STAT</h1>
         <nav>
-            <ul class="navbar-nav">
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#">ESI-SBA</a>
-                </li>
+            <button class="nav-btn">ESI-SBA</button>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#">ESTIN</a>
-                </li>
-            </ul>
+            <button class="nav-btn">ESTIN</button>
+
 
         </nav>
     </header>
-    -->
+    
 
     <main>
 
-        <div id="Interface">
-            <div id="precision_button_ctn">
-                <button class="precision_button">0.25</button>
-                <button class="precision_button">0.5</button>
-                <button class="precision_button">1</button>
-                <button class="precision_button">2</button>
-                <button class="precision_button">5</button>
-                <button class="precision_button">10</button>
+
+        <nav id="navigation">
+            <h3>Shortcuts :</h3>
+            <button class="shortcutsBtn" id="selectedNavButton">1CPI : 1° Semmeter  </button>
+            <button class="shortcutsBtn">1CPI : 2° Semmeter  </button>
+            <button class="shortcutsBtn">2CPI : 1° Semmeter  </button>
+            <button class="shortcutsBtn">2CPI : 2° Semmeter  </button>
+
+            <h3>Our choice :</h3>
+            <button class="ourChoiceBtn">1CPI : First Semmeter <strong>Analyse</strong> </button>
+            <button class="ourChoiceBtn">1CPI : Second Semmeter <strong>Algorithmic</strong> </button>
+            <button class="ourChoiceBtn">2CPI : First Semmeter <strong>Analyse</strong> </button>
+            <button class="ourChoiceBtn">2CPI : First Semmeter <strong>Electronics</strong> </button>
+            <button class="ourChoiceBtn">2CPI : Second Semmeter <strong>Analyse</strong> </button>
+
+            <h3>The full Base:</h3>
+            <h4>1CPI : </h4>
+            <h5>▶Yearly:</h5>
+            <button class="1cpiTBtn">Générale</button>
+            <h5>▶S1:</h5>
+            <button class="1cpiS1Btn">Générale</button>
+            <button class="1cpiS1Btn">Analyse</button>
+            <button class="1cpiS1Btn">Algèbre</button>
+            <button class="1cpiS1Btn">Algorithme</button>
+            <button class="1cpiS1Btn">Electrecité</button>
+            <button class="1cpiS1Btn">Système</button>
+            <button class="1cpiS1Btn">TEE</button>
+            <button class="1cpiS1Btn">Bureautique et Web</button>
+
+            <h5>▶S2:</h5>
+            <button class="1cpiS2Btn">Générale</button>
+            <button class="1cpiS2Btn">Analyse</button>
+            <button class="1cpiS2Btn">Algèbre</button>
+            <button class="1cpiS2Btn">Algorithme</button>
+            <button class="1cpiS2Btn">Electronique</button>
+            <button class="1cpiS2Btn">Système</button>
+            <button class="1cpiS2Btn">TEO</button>
+            <button class="1cpiS2Btn">Mécanique</button>
+            <button class="1cpiS2Btn">Anglais</button>
+
+            <h4>2CPI : </h4>
+            <h5>▶Yearly:</h5>
+            <button class="2cpiTBtn">Générale</button>
+            <h5>▶S1:</h5>
+            <button class="2cpiS1Btn">Générale</button>
+            <button class="2cpiS1Btn">Analyse</button>
+            <button class="2cpiS1Btn">Algèbre</button>
+            <button class="2cpiS1Btn">Anglais</button>
+            <button class="2cpiS1Btn">SFD</button>
+            <button class="2cpiS1Btn">Electronique</button>
+            <button class="2cpiS1Btn">Architecture</button>
+            <button class="2cpiS1Btn">Probabilité</button>
+            <button class="2cpiS1Btn">Economie</button>
+
+            <h5>▶S2:</h5>
+            <button class="2cpiS2Btn">Générale</button>
+            <button class="2cpiS2Btn">Analyse</button>
+            <button class="2cpiS2Btn">Logique</button>
+            <button class="2cpiS2Btn">Programmation Orienté Objet</button>
+            <button class="2cpiS2Btn">Système d'information</button>
+            <button class="2cpiS2Btn">Projet pluridiciplinaire</button>
+            <button class="2cpiS2Btn">Probabilité</button>
+            <button class="2cpiS2Btn">Anglais</button>
+            <button class="2cpiS2Btn">Optique</button>
+
+        </nav>
+
+        <div id="app">
+            <div id="screen">
+                <svg id="graph"  width="100%">
+                    <rect width="100%" height="100%" fill="#FAFAFE"></rect>
+                </svg>
+
             </div>
+
+            <div id="Interface">
+                <div id="precision_button_ctn">
+                        <!--<button class="precision_buttons">0.25</button>-->
+                        <button class="precision_buttons">0.5</button>
+                        <button class="precision_buttons">1</button>
+                        <button class="precision_buttons" id="selected_precision_button">2</button>
+                        <button class="precision_buttons">5</button>
+                        <button class="precision_buttons">10</button>
+                </div>
+                
+                <div id="graph_mode_ctn">
+                    <label id="LINE_GRAPH_MODE_LBL"> 
+                        <input type="radio" id="LINE_GRAPH_MODE" value="1" class="radio_img">
+                        <img src="./svgAttr/line-graph.svg" width="30px" height="30px"/>
+                    </label>
+                    
+                    <label id="BAR_GRAPH_MODE_LBL">
+                        <input type="radio" id="BAR_GRAPH_MODE" value="0" class="radio_img" checked>
+                        <img src="./svgAttr/bar-graph.svg" width="30px" height="30px"/>
+                    </label>
+                
+                </div>
+
+                <div id="cumulative_ctn">
+                    <h4>Graph's type:</h4>
+
+                    <button class="radio_type_cumu" value="0" id="selected_type_button">Repartition</button>
+                    <button class="radio_type_cumu" value="1">Cummulative</button>
+
+                </div>
+
+                <div id="entryArray_ctn">
+                    <h4>Entry:</h4>
+
+                    <div id="entry_ctn">
+
+                    </div>
+                </div>
             
-            <div id="switch_ctn">
             
-            </div>
+        
         </div>
 
-        <div id="screen">
-            <svg id="graph">
-                <rect width="100%" height="100%" fill="#FAFAFE"></rect>
-            </svg>
-
         </div>
-
 
     </main>
 
-    <script src="Grapher.js"></script>
+    <script src="Router.js"></script>
+
     <script src="Axes.js"></script>
+    <script src="Grapher.js"></script>
+    <script src="Interface.js"></script>
     <script src="script.js"></script>
 
     <script src="utils.js"></script>
 
     <style>
-        body, html, main, #screen, #graph{
+        body, html{
             margin: 0;
             padding: 0;
 
             height: 100%;
             width: 100%;
         }
+
 
         #svg-line{
             filter: drop-shadow(  -2px 2px 3px black);
@@ -89,6 +186,160 @@
             stroke-width: 0.1%;
         }
 
+        /***********************************************************************/
+        /*INTERFACE*/
+
+        /****************GRAPH AFFICHAGE MODE*****************/
+        .radio_img{
+            display: none;
+
+            
+        }
+
+        #LINE_GRAPH_MODE_LBL{
+            border: 2px solid #00adcc;
+            padding-top: 4px;
+            padding-left: 3px;
+            padding-right: 3px;
+            display: inline-block;
+            border-radius: 4px;
+
+            cursor: pointer;
+
+        }
+        #LINE_GRAPH_MODE_LBL:hover{
+            opacity: 0.5;
+        }
+
+        #BAR_GRAPH_MODE_LBL{
+            border: 2px solid #00adcc;
+            padding-top: 4px;
+            padding-left: 3px;
+            padding-right: 3px;
+            display: inline-block;
+
+            border-radius: 4px;
+
+            background-color: #00c9e5;
+            cursor: pointer;
+
+        }
+        #BAR_GRAPH_MODE_LBL:hover{
+            opacity: 0.5;
+        }
+
+        /****************PRECISION*****************/
+        #precision_button_ctn{
+            width: 50px;
+            border-radius: 3px;
+            border: 1px solid black;
+
+            box-shadow: 0px 0px 5px black;
+
+        }
+        .precision_buttons{
+            display: block;
+            padding-top: 4px;
+            padding-bottom: 2px;
+            width: 100%;
+
+            background-color: #FAFAFA;
+            border: 0;
+            border-bottom: 1px solid #522;
+            font-size: large;
+
+            cursor: pointer;
+
+        }
+
+        .precision_buttons:hover{
+            opacity: 0.5;
+        }
+        #selected_precision_button{
+            background-color: #00c9e5;
+            color: whitesmoke;
+        }
+
+
+        /****************REPARTITION*****************/
+
+        #cumulative_ctn{
+            font-family: Arial, Helvetica, sans-serif;
+
+            width: 200px;    
+
+            box-shadow: 0px 0px 5px black;
+            border-radius: 3px;
+
+        }
+
+        #cumulative_ctn h4{
+            text-decoration: underline;
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .radio_type_cumu{
+            display: block;
+            padding-top: 4px;
+            padding-bottom: 2px;
+            width: 100%;
+
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px solid #522;
+            font-size: large;
+
+            cursor: pointer;
+        }
+        
+        .radio_type_cumu:hover{
+            opacity: 0.5;
+        }
+
+        #selected_type_button{
+            background-color: #00c9e5;
+            color: whitesmoke;
+        }
+
+        /****************ENTRY SELECTION*************/
+        #entryArray_ctn{
+            font-family: Arial, Helvetica, sans-serif;
+
+            width: 200px;    
+
+            box-shadow: 0px 0px 5px black;
+            border-radius: 3px;
+        }
+        #entryArray_ctn h4{
+            text-decoration: underline;
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .radio_type_entry{
+            display: block;
+            padding-top: 4px;
+            padding-bottom: 2px;
+            width: 100%;
+
+            background-color: #FAFAFA;
+            border: 0;
+            border-bottom: 1px solid #522;
+            font-size: large;
+
+            cursor: pointer;
+        }
+        .radio_type_entry:hover{
+            opacity: 0.5;
+        }
+
+        #selected_entry_button{
+            background-color: #00c9e5;
+            color: whitesmoke;
+        }
     </style>
 
 </body>
