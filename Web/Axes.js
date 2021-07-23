@@ -36,7 +36,7 @@ class Axes{
 
         this.writeAxesNames();
 
-        this.drawReferenceLines(echelonTable.y);
+        this.drawReferenceLines(echelonTable.x, echelonTable.y);
 
         return {
             x: echelonTable.x,
@@ -102,7 +102,7 @@ class Axes{
             
             this.screen.appendChild(arr_echelonX_svg[i]);
         }
-
+        console.log(this.graphInput);
         //Draws the echelons on the Y axis
         //=======================================================================
         let max_y_value = Math.max( ... this.graphInput ),
@@ -159,13 +159,37 @@ class Axes{
             text_x_svg[i] = document.createElementNS( nameSpace, 'text');
             text_x_svg[i].appendChild(innerText);
 
-            
-            text_x_svg[i].setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
+            if (i % 2 == 0) 
+                text_x_svg[i].setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
+            else
+                text_x_svg[i].setAttribute('fill', '#00adcc');
+
             text_x_svg[i].setAttribute('text-anchor', 'middle');
             text_x_svg[i].setAttribute('x', text_x_pos + '%');
             text_x_svg[i].setAttribute('y', '95%');
+
+            if (this.precision <= 1) 
+            
+                text_x_svg[i].setAttribute('x', echelon_X_table[i] + '%');
+
+            
             
             this.screen.appendChild(text_x_svg[i]);
+        }
+
+        if (this.precision <= 1) 
+        {   
+            let lastLabel = document.createElementNS( nameSpace, 'text');
+            let innerText = document.createTextNode( '20 ]' ) ;
+
+            lastLabel.setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
+            lastLabel.appendChild(innerText);
+
+            lastLabel.setAttribute('text-anchor', 'middle');
+            lastLabel.setAttribute('x', echelon_X_table[echelon_X_table.length - 1] + '%');
+            lastLabel.setAttribute('y', '95%');
+
+            this.screen.appendChild(lastLabel);
         }
 
         let stepSize = max_effective_y/10;
@@ -192,6 +216,11 @@ class Axes{
         }
 
         function generateTextX(i, precision) {
+
+            if (precision <= 1) {
+                return i * precision;
+            }
+
             let str = '[';
 
             str += precision * i;
@@ -206,6 +235,8 @@ class Axes{
             return str;
         } 
     }
+
+
 
     writeAxesNames(){
         let labelAxeX = document.createElementNS( nameSpace, 'text'),
@@ -223,7 +254,7 @@ class Axes{
         labelAxeX.setAttribute('font-weight', 'bolder');
         labelAxeX.setAttribute('font-family', 'Arial');
 
-        labelAxeX.setAttribute('x', '92%');
+        labelAxeX.setAttribute('x', (POS_OX_GRAPH.x + 3) + '%');
         labelAxeX.setAttribute('y', '95%');
 
         labelAxeY.setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
@@ -232,16 +263,15 @@ class Axes{
         labelAxeY.setAttribute('font-weight', 'bolder');
         labelAxeY.setAttribute('font-family', 'Arial');
 
-        //labelAxeY.setAttribute('textLength', '4%');
 
         labelAxeY.setAttribute('x', '5.5%');
-        labelAxeY.setAttribute('y', '5%');
+        labelAxeY.setAttribute('y', (POS_OY_GRAPH.y - 1) + '%');
 
         this.screen.appendChild(labelAxeX);
         this.screen.appendChild(labelAxeY);
     }
 
-    drawReferenceLines(echelon_Y_table){
+    drawReferenceLines(echelon_X_table, echelon_Y_table){
         
         var ref_line_svg = new Array( echelon_Y_table.length );
 
@@ -266,6 +296,22 @@ class Axes{
             this.screen.appendChild(ref_line_svg[i]);
             
         }
+
+        //Moyenne line
+
+        var moy_line_svg =  document.createElementNS( nameSpace, 'line');
+        let middle = echelon_X_table[Math.floor(echelon_X_table.length/2)];
+
+        moy_line_svg.setAttribute('stroke', 'rgba(120, 2, 50, 0.8)');
+        //moy_line_svg.setAttribute('stroke-dasharray', '1, 1');
+
+        moy_line_svg.setAttribute('x1', middle + '%');
+        moy_line_svg.setAttribute('x2', middle + '%');
+        moy_line_svg.setAttribute('y1', 5 + '%');
+        moy_line_svg.setAttribute('y2', 91 + '%');
+    
+        this.screen.appendChild(moy_line_svg);
     }
+
 
 }
