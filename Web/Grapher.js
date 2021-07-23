@@ -1,16 +1,16 @@
 
 const GRAPH_TYPE = {
-    ACCUMULATIVE: 0,
-    REPARTITION: 1,
+    CUMULATIVE: 1,
+    REPARTITION: 0
 }
 const GRAPH_AFFICHAGE = {
-    BATON : 0,
+    BAR : 0,
     LIGNE : 1,
 }
 
 class Grapher{
 
-    constructor(table){
+    constructor(){
 
         this.screen = document.getElementById('graph');
         
@@ -19,22 +19,73 @@ class Grapher{
         this.graphType = GRAPH_TYPE.ACCUMULATIVE;
         this.graphAffichage = GRAPH_AFFICHAGE.BATON;
 
-        this.precision = 1  ; // each unitrefers to 1 "note point" 
-        this.graphInput = [0, 30, 152, 285, 20, 12, 153, 98, 302, 56,
-            0, 30, 152, 285, 20, 12, 153, 98, 302, 56];
-
-            this.axes = new Axes(this.screen, this.graphInput, this.precision,
-                 'Moyenne', "Nombre d'étudiant");
+        this.precision = 0.5  ; // each unitrefers to 1 "note point" 
+        this.graphTable = null;//raw
+        this.graphInput = null;//treated
 
 
+        this.axes = new Axes(this.screen, this.graphInput, this.precision,
+                 'Notes', "#Students");
+    }
+
+
+    update(){
+        //We compute here the graphInput array
+
+
+        let nbElem = 20/this.precision;
+
+
+        this.graphInput = new Array(nbElem);
+
+        for (let i = 0; i < this.graphInput.length; i++) 
+
+            this.graphInput[i] = 0;
+            
+        
+        for (const value of this.graphTable) {
+            
+            let index = Math.floor(value / this.precision);
+            
+            if (isNaN(index)) 
+
+                continue;
+            
+
+            if (index == nbElem) 
+                index --;
+
+
+            if (this.graphType == GRAPH_TYPE.REPARTITION) 
+            {
+                this.graphInput[index]++;
+            }
+            else if (this.graphType == GRAPH_TYPE.CUMULATIVE) 
+            {
+                for (let i = index; i < nbElem; i++) this.graphInput[i]++;
+            }
+
+        }
+        console.log(this.graphInput);
+
+        this.updateAxes();
+    }
+
+    updateAxes(){
+        this.axes.graphInput = this.graphInput;
+        this.axes.precision = this.precision;
     }
 
     draw(){
+        this.clearScreen();
+
         let echelons = this.axes.draw(true);
 
-        //this.drawRectGraph( echelons.x, echelons.y );
+        if ( this.graphAffichage == GRAPH_AFFICHAGE.BAR ) 
+            this.drawRectGraph( echelons.x, echelons.y );
 
-        this.drawLineGraph( echelons.x, echelons.y );
+        else if ( this.graphAffichage == GRAPH_AFFICHAGE.LIGNE ) 
+            this.drawLineGraph( echelons.x, echelons.y );
 
         //this.axes.drawAxes();
         //this.axes.drawEchelons();
@@ -165,6 +216,27 @@ class Grapher{
         }
     }
 
+    clearScreen(){
+        this.screen.innerHTML = "";
+    }
+
+
+    static extractGraphTable(table, entryToExtract){
+        let graphTable = [];
+        console.log(table, entryToExtract);
+        let index = table[0].indexOf(entryToExtract);
+
+        for (let i = 1; i < table.length; i++) 
+        {
+            let value = table[i][index].replace(',', '.');//Systeme de virgule francais
+
+            if (!isNaN(value)) 
+                graphTable.push( parseFloat( value ) );   
+
+        }
+
+        return graphTable;
+    }
 }
 
 
