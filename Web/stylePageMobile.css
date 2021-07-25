@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'GOGOIA_Deco';
+    src: url('font/GOGOIA_Deco.otf');
+}
+@font-face {
+    font-family: 'GOGOIA_Reg';
+    src: url('font/GOGOIA_Regular.otf');
+}
+@font-face {
+    font-family: 'Champagne_and_Limousines';
+    src: url('font/Champagne_and_Limousines.ttf');
+}
+
+/*************************HEADER**************************************/
+header{
+    display: flex;
+    box-shadow: 4px 0px 10px black;
+}
+
+header h1{
+    font-size: 30px;
+    flex: 3;
+    font-family: GOGOIA_Deco;
+    padding-left: 10px;
+    margin: 0;
+}
+header nav{
+    /*font-size: 10;*/
+    flex: 1;
+
+
+    text-align: end;
+}
+
+.nav-btn{
+    display: inline-block;
+
+    background-color: #00c9e4;
+    color: whitesmoke;
+    display: inline-block;
+    height: 100%;
+
+    font-family: Champagne_and_Limousines;
+
+    font-size: 20px;
+    border: 0;
+    margin: 0;
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
