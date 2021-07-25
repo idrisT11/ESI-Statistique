@@ -3,6 +3,7 @@
     "short_name": "esi-stat",
     "start_url": ".",
     "description": "Quelques statistiques a propos des resultats des écoles d'ingenieur en informatique esi sba et l' estin .",
+    "categories": ["statistic", "education", "informatic"],
     "display": "standalone",
     "orientation": "landscape"
 }
