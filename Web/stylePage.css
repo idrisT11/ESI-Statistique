@@ -167,3 +167,133 @@ main{
     bottom: 230px;
     right: 10px;  
 }
+/***********************************************************************/
+/*INTERFACE*/
+/****************GRAPH AFFICHAGE MODE*****************/
+.radio_img{
+    display: none;
+    
+}
+
+#BAR_GRAPH_MODE_LBL img, #LINE_GRAPH_MODE_LBL img{
+    width: 30px;
+    height: 30px;
+}
+
+#LINE_GRAPH_MODE_LBL{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #00adcc;
+    padding-top: 4px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 2px;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#LINE_GRAPH_MODE_LBL:hover{
+    opacity: 0.5;
+}
+#BAR_GRAPH_MODE_LBL{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #00adcc;
+    padding-top: 4px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 2px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00c9e5;
+    cursor: pointer;
+}
+#BAR_GRAPH_MODE_LBL:hover{
+    opacity: 0.5;
+}
+/****************PRECISION*****************/
+#precision_button_ctn{
+    width: 50px;
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 5px black;
+}
+.precision_buttons{
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 0;
+    border-bottom: 1px solid #522;
+    font-size: large;
+    cursor: pointer;
+}
+.precision_buttons:hover{
+    opacity: 0.5;
+}
+#selected_precision_button{
+    background-color: #00c9e5;
+    color: whitesmoke;
+}
+/****************REPARTITION*****************/
+#cumulative_ctn{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 200px;    
+    box-shadow: 0px 0px 5px black;
+    border-radius: 3px;
+}
+#cumulative_ctn h4{
+    text-decoration: underline;
+    margin: auto;
+    text-align: center;
+}
+.radio_type_cumu{
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #522;
+    font-size: large;
+    cursor: pointer;
+}
+
+.radio_type_cumu:hover{
+    opacity: 0.5;
+}
+#selected_type_button{
+    background-color: #00c9e5;
+    color: whitesmoke;
+}
+/****************ENTRY SELECTION*************/
+#entryArray_ctn{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 200px;    
+    box-shadow: 0px 0px 5px black;
+    border-radius: 3px;
+}
+#entryArray_ctn h4{
+    text-decoration: underline;
+    margin: auto;
+    text-align: center;
+}
+.radio_type_entry{
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 0;
+    border-bottom: 1px solid #522;
+    font-size: large;
+    cursor: pointer;
+}
+.radio_type_entry:hover{
+    opacity: 0.5;
+}
+#selected_entry_button{
+    background-color: #00c9e5;
+    color: whitesmoke;
+}

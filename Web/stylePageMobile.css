@@ -19,7 +19,7 @@ header{
 
 header h1{
     font-size: 30px;
-    flex: 3;
+    flex: 2;
     font-family: GOGOIA_Deco;
     padding-left: 10px;
     margin: 0;
@@ -48,4 +48,276 @@ header nav{
 
     padding-left: 15px;
     padding-right: 15px;
+}
+
+/*************************MAIN**************************************/
+main{
+    display: flex;
+    height: 94%;
+}
+/*************************NAV**************************************/
+#navigation{
+    flex: 1;
+    box-shadow: 0px 5px 10px black;
+    margin-left: 0;
+
+    overflow-y: scroll;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+#navigation h3{
+    background-color: #00adcc;
+    color: whitesmoke;
+    font-size: 17px;
+    flex: 3;
+    font-family: Champagne_and_Limousines;
+    padding-left: 5px;
+    margin: 0;
+
+    padding: 5px;
+}
+#navigation h4{
+    font-size: 14px;
+    flex: 1;
+    font-family: Champagne_and_Limousines;
+    text-decoration: underline;
+    padding-left: 7px;
+    margin: 0;
+}
+#navigation h5{
+    font-size: 13px;
+    flex: 1;
+    font-family: Champagne_and_Limousines;
+    text-decoration: underline;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin: 0;
+}
+#navigation button{
+    font-size: 15px;
+    font-family: Champagne_and_Limousines;
+    border: 0;
+    text-align: center;
+    width: 100%;
+
+    padding: 2px;
+    border-bottom: 1px solid black;
+
+    cursor: pointer;
+
+}
+#navigation button:hover{
+    opacity: 0.5;
+
+}
+#selectedNavButton{
+    background-color: #00c9e5;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+
+/*************************app**************************************/
+#app{
+    flex:4;
+    height: 100%;
+}
+#graph, #screen{
+    height: 100%;
+}
+#Interface{
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+#precision_button_ctn{
+    position: fixed;
+    bottom: -1px;
+    right: -1px;
+}
+#cumulative_ctn{
+    position: fixed;
+    right: 5px;
+    top: 50px;
+}
+#entryArray_ctn{
+    position: fixed;
+    right: 4px;
+    top: 150px;   
+}
+#graph_mode_ctn{
+    position: fixed;
+    bottom: 50px;
+    right: 32px;  
+}
+/***********************************************************************/
+/*INTERFACE*/
+/****************GRAPH AFFICHAGE MODE*****************/
+#graph_mode_ctn{
+    display: flex;
+    flex-direction: column;
+}
+.radio_img{
+    display: none;
+    
+}
+#BAR_GRAPH_MODE_LBL img, #LINE_GRAPH_MODE_LBL img{
+    width: 23px;
+    height: 23px;
+}
+
+#LINE_GRAPH_MODE_LBL{
+    margin: 2px;
+    margin-right: 0;
+    width: 23px;
+    height: 23px;
+    border: 2px solid #00adcc;
+    padding-top: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#LINE_GRAPH_MODE_LBL:hover{
+    opacity: 0.5;
+}
+
+#BAR_GRAPH_MODE_LBL{
+    margin: 2px;
+    margin-right: 0;    
+    width: 23px;
+    height: 23px;
+
+    border: 2px solid #00adcc;
+    padding-top: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00c9e5;
+    cursor: pointer;
+}
+#BAR_GRAPH_MODE_LBL:hover{
+    opacity: 0.5;
+}
+/****************PRECISION*****************/
+#precision_button_ctn{
+    width: 27px;
+    border-radius: 3px;
+    border: 1px solid black;
+    border-bottom: 0;
+    box-shadow: 0px 0px 2px black;
+}
+.precision_buttons{
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 0;
+    border-bottom: 1px solid #522;
+    font-size: 13px;
+    font-family: Champagne_and_Limousines;
+    font-weight: bold;
+    text-align: center;
+}
+.precision_buttons:hover{
+    opacity: 0.5;
+}
+#selected_precision_button{
+    background-color: #00c9e5;
+    color: whitesmoke;
+}
+
+/****************REPARTITION*****************/
+#cumulative_ctn{
+    font-family: Champagne_and_Limousines, Arial, Helvetica, sans-serif;
+    width: 65px;    
+    box-shadow: 0px 0px 5px black;
+    border-radius: 3px;
+}
+#cumulative_ctn h4{
+    text-decoration: underline;
+    margin: auto;
+    text-align: center;
+}
+.radio_type_cumu{
+    font-family: Champagne_and_Limousines, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+    text-align: center;
+
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #522;
+    font-size: small;
+    cursor: pointer;
+}
+
+.radio_type_cumu:hover{
+    opacity: 0.5;
+}
+#selected_type_button{
+    background-color: #00c9e5;
+    color: whitesmoke;
+}
+/****************ENTRY SELECTION*************/
+#entryArray_ctn{
+    font-family: Champagne_and_Limousines, Arial, Helvetica, sans-serif;
+    width: 80px;    
+    box-shadow: 0px 0px 5px black;
+    border-radius: 3px;
+}
+#entryArray_ctn h4{
+    text-decoration: underline;
+    margin: auto;
+    text-align: center;
+}
+.radio_type_entry{
+    font-family: Champagne_and_Limousines, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+    text-align: center;
+
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 0;
+    border-bottom: 1px solid #522;
+    font-size: small;
+    cursor: pointer;
+}
+.radio_type_entry:hover{
+    opacity: 0.5;
+}
+#selected_entry_button{
+    background-color: #00c9e5;
+    color: whitesmoke;
 }
