@@ -65,7 +65,7 @@ main{
 }
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
   }
   
   /* Track */
@@ -75,12 +75,12 @@ main{
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #00c9e5;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #00c9e5;
   }
 
 #navigation h3{

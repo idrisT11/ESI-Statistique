@@ -1,19 +1,5 @@
 const nameSpace = "http://www.w3.org/2000/svg";
 
-const   POS_ZERO_GRAPH = {
-            x: 5,
-            y: 92
-        },
-        POS_OX_GRAPH = {
-            x: 92,
-            y: POS_ZERO_GRAPH.y
-        },
-        POS_OY_GRAPH = {
-            x: POS_ZERO_GRAPH.x,
-            y: 5,
-        };
-
-
 
 class Axes{
 
@@ -96,9 +82,9 @@ class Axes{
             arr_echelonX_svg[i].setAttribute('stroke-width', '2px');
             arr_echelonX_svg[i].setAttribute('id', 'svg-line');
             arr_echelonX_svg[i].setAttribute('x1', echelon_X + '%');
-            arr_echelonX_svg[i].setAttribute('y1', '91%');
+            arr_echelonX_svg[i].setAttribute('y1', (POS_ZERO_GRAPH.y - 1) + '%');
             arr_echelonX_svg[i].setAttribute('x2', echelon_X + '%');
-            arr_echelonX_svg[i].setAttribute('y2', '93%');
+            arr_echelonX_svg[i].setAttribute('y2', (POS_ZERO_GRAPH.y + 1) + '%');
             
             this.screen.appendChild(arr_echelonX_svg[i]);
         }
@@ -130,9 +116,9 @@ class Axes{
             arr_echelonY_svg[i].setAttribute('stroke', 'rgba(4, 2, 2, 0.5)');
             arr_echelonY_svg[i].setAttribute('stroke-width', '2px');
             arr_echelonY_svg[i].setAttribute('id', 'svg-line');
-            arr_echelonY_svg[i].setAttribute('x1', '4.5%');
+            arr_echelonY_svg[i].setAttribute('x1', (POS_ZERO_GRAPH.x - 0.5) + '%');
             arr_echelonY_svg[i].setAttribute('y1', echelon_Y + '%');
-            arr_echelonY_svg[i].setAttribute('x2', '5.5%');
+            arr_echelonY_svg[i].setAttribute('x2', (POS_ZERO_GRAPH.x + 0.5) + '%');
             arr_echelonY_svg[i].setAttribute('y2', echelon_Y + '%');
             
             this.screen.appendChild(arr_echelonY_svg[i]);
@@ -151,43 +137,50 @@ class Axes{
             text_y_svg = new Array( echelon_Y_table.length - 1 );
 
         for (let i = 0; i < echelon_X_table.length - 1; i++) 
-        {
-            let text_x_pos = (echelon_X_table[i+1] + echelon_X_table[i]) / 2;
-            let innerText = document.createTextNode( generateTextX(i, this.precision) ) ;
+        {   
+            //If the precesion is smaller than 1 (say 0.5), we will render only one label out of the two
+            if (i % 2 == 0 || this.precision >= 1) 
+            {
+                
+                let text_x_pos = (echelon_X_table[i+1] + echelon_X_table[i]) / 2;
+                let innerText = document.createTextNode( generateTextX(i, this.precision) ) ;
 
 
-            text_x_svg[i] = document.createElementNS( nameSpace, 'text');
-            text_x_svg[i].appendChild(innerText);
+                text_x_svg[i] = document.createElementNS( nameSpace, 'text');
+                text_x_svg[i].appendChild(innerText);
 
-            if (i % 2 == 0) 
-                text_x_svg[i].setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
-            else
-                text_x_svg[i].setAttribute('fill', '#00adcc');
+                if (i % 2 == 0) 
+                    text_x_svg[i].setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
+                else
+                    text_x_svg[i].setAttribute('fill', '#00adcc');
 
-            text_x_svg[i].setAttribute('text-anchor', 'middle');
-            text_x_svg[i].setAttribute('x', text_x_pos + '%');
-            text_x_svg[i].setAttribute('y', '95%');
+                text_x_svg[i].setAttribute('font-size', axeX_label_fontsize); 
+                text_x_svg[i].setAttribute('text-anchor', 'middle');
+                text_x_svg[i].setAttribute('x', text_x_pos + '%');
+                text_x_svg[i].setAttribute('y', label_axe_X_posY + '%');
 
-            if (this.precision <= 1) 
-            
-                text_x_svg[i].setAttribute('x', echelon_X_table[i] + '%');
+                if (this.precision <= 1) 
+                
+                    text_x_svg[i].setAttribute('x', echelon_X_table[i] + '%');
 
-            
-            
-            this.screen.appendChild(text_x_svg[i]);
+                
+                
+                this.screen.appendChild(text_x_svg[i]);
+            }
+
         }
 
         if (this.precision <= 1) 
         {   
             let lastLabel = document.createElementNS( nameSpace, 'text');
             let innerText = document.createTextNode( '20 ]' ) ;
-
+            
             lastLabel.setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
             lastLabel.appendChild(innerText);
 
             lastLabel.setAttribute('text-anchor', 'middle');
             lastLabel.setAttribute('x', echelon_X_table[echelon_X_table.length - 1] + '%');
-            lastLabel.setAttribute('y', '95%');
+            lastLabel.setAttribute('y', label_axe_X_posY + '%');
 
             this.screen.appendChild(lastLabel);
         }
@@ -204,10 +197,10 @@ class Axes{
             text_y_svg[i].appendChild(innerText);
 
             text_y_svg[i].setAttribute('stroke', 'rgba(4, 2, 2, 0.5)');
-            text_y_svg[i].setAttribute('font-size', '1em');
+            text_y_svg[i].setAttribute('font-size', axeY_label_fontsize);
 
             text_y_svg[i].setAttribute('text-anchor', 'end');
-            text_y_svg[i].setAttribute('x', '3.5%');
+            text_y_svg[i].setAttribute('x', label_axe_Y_posX + '%');
             text_y_svg[i].setAttribute('y', text_y_pos + '%');
 
         
@@ -236,8 +229,6 @@ class Axes{
         } 
     }
 
-
-
     writeAxesNames(){
         let labelAxeX = document.createElementNS( nameSpace, 'text'),
             labelAxeY = document.createElementNS( nameSpace, 'text');
@@ -255,7 +246,7 @@ class Axes{
         labelAxeX.setAttribute('font-family', 'Arial');
 
         labelAxeX.setAttribute('x', (POS_OX_GRAPH.x + 3) + '%');
-        labelAxeX.setAttribute('y', '95%');
+        labelAxeX.setAttribute('y', label_axe_X_posY + '%');
 
         labelAxeY.setAttribute('fill', 'rgba(4, 2, 2, 0.9)');
         labelAxeY.setAttribute('id', 'svg-axe-label');
@@ -264,7 +255,7 @@ class Axes{
         labelAxeY.setAttribute('font-family', 'Arial');
 
 
-        labelAxeY.setAttribute('x', '5.5%');
+        labelAxeY.setAttribute('x', (label_axe_Y_posX + 2.5) + '%');
         labelAxeY.setAttribute('y', (POS_OY_GRAPH.y - 1) + '%');
 
         this.screen.appendChild(labelAxeX);
@@ -286,8 +277,8 @@ class Axes{
             ref_line_svg[i].setAttribute('stroke-dasharray', '1, 1');
 
             ref_line_svg[i].setAttribute('text-anchor', 'end');
-            ref_line_svg[i].setAttribute('x1', '5%');
-            ref_line_svg[i].setAttribute('x2', '91%');
+            ref_line_svg[i].setAttribute('x1', POS_ZERO_GRAPH.x + '%');
+            ref_line_svg[i].setAttribute('x2', (POS_ZERO_GRAPH.y - 1) + '%');
 
             ref_line_svg[i].setAttribute('y1', line_y_pos + '%');
             ref_line_svg[i].setAttribute('y2', line_y_pos + '%');
@@ -307,8 +298,8 @@ class Axes{
 
         moy_line_svg.setAttribute('x1', middle + '%');
         moy_line_svg.setAttribute('x2', middle + '%');
-        moy_line_svg.setAttribute('y1', 5 + '%');
-        moy_line_svg.setAttribute('y2', 91 + '%');
+        moy_line_svg.setAttribute('y1', POS_ZERO_GRAPH.x + '%');
+        moy_line_svg.setAttribute('y2', (POS_ZERO_GRAPH.y - 1) + '%');
     
         this.screen.appendChild(moy_line_svg);
     }
