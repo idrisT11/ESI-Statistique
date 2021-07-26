@@ -1,77 +1,4 @@
-
-const navShortcutsButtonLinks = [
-    ['1CPI', 'S1', 'GENERAL'],
-    ['1CPI', 'S2', 'GENERAL'],
-    ['2CPI', 'S1', 'GENERAL'],
-    ['2CPI', 'S2', 'GENERAL']   
-];
-const navOurChoiceButtonsLinks = [
-    ['1CPI', 'S1', 'ANALYSE'],
-    ['1CPI', 'S2', 'ALGO'],
-    ['2CPI', 'S1', 'ANALYSE'],
-    ['2CPI', 'S1', 'ELECTRONIQUE'],
-    ['2CPI', 'S2', 'ANALYSE']
-];
-
-const cpi1TButtonsLinks = [
-    ['1CPI', 'T', 'GENERAL'],
-];
-
-const cpi1S1ButtonsLinks = [
-    ['1CPI', 'S1', 'GENERAL'],
-    ['1CPI', 'S1', 'ANALYSE'],    
-    ['1CPI', 'S1', 'ALGEBRE'],
-    ['1CPI', 'S1', 'ALGO'],
-    ['1CPI', 'S1', 'ELECTRICITE'],
-    ['1CPI', 'S1', 'SYSTEME'],
-    ['1CPI', 'S1', 'TEE'],
-    ['1CPI', 'S1', 'BW'],
-
-];
-
-const cpi1S2ButtonsLinks = [
-    ['1CPI', 'S2', 'GENERAL'],
-    ['1CPI', 'S2', 'ANALYSE'],    
-    ['1CPI', 'S2', 'ALGEBRE'],
-    ['1CPI', 'S2', 'ALGO'],
-    ['1CPI', 'S2', 'ELECTRONIQUE'],
-    ['1CPI', 'S2', 'SYSTEME'],
-    ['1CPI', 'S2', 'TEO'],
-    ['1CPI', 'S2', 'MDP'],
-    ['1CPI', 'S2', 'ANGLAIS'],
-
-];
-
-const cpi2TButtonsLinks = [
-    ['2CPI', 'T', 'GENERAL'],
-];
-
-const cpi2S1ButtonsLinks = [
-    ['2CPI', 'S1', 'GENERAL'],
-    ['2CPI', 'S1', 'ANALYSE'],    
-    ['2CPI', 'S1', 'ALGEBRE'],
-    ['2CPI', 'S1', 'ANGLAIS'],
-    ['2CPI', 'S1', 'SFD'],
-    ['2CPI', 'S1', 'ELECTRONIQUE'],
-    ['2CPI', 'S1', 'ARCHI'],
-    ['2CPI', 'S1', 'PROBA'],
-    ['2CPI', 'S1', 'ECO'],
-
-
-];
-
-const cpi2S2ButtonsLinks = [
-    ['2CPI', 'S2', 'GENERAL'],
-    ['2CPI', 'S2', 'ANALYSE'],    
-    ['2CPI', 'S2', 'LOGIQUE'],
-    ['2CPI', 'S2', 'POO'],
-    ['2CPI', 'S2', 'ISI'],
-    ['2CPI', 'S2', 'PPD'],
-    ['2CPI', 'S2', 'PROBA'],
-    ['2CPI', 'S2', 'ANGLAIS'],
-    ['2CPI', 'S2', 'OPTIQUE'],
-
-];
+//The school variable is declared in the html file
 
 class Interface{
     constructor()
@@ -98,6 +25,7 @@ class Interface{
         this.graphModeLineButton = document.getElementById('LINE_GRAPH_MODE_LBL');
 
         //NAV
+        
         this.navShortcutsButton = document.getElementsByClassName('shortcutsBtn');
         this.navOurChoicesButton = document.getElementsByClassName('ourChoiceBtn');
         this.navcpi1TButton = document.getElementsByClassName('1cpiTBtn');
@@ -105,7 +33,7 @@ class Interface{
         this.navcpi1S2Button = document.getElementsByClassName('1cpiS2Btn');
         this.navcpi2TButton = document.getElementsByClassName('2cpiTBtn');
         this.navcpi2S1Button = document.getElementsByClassName('2cpiS1Btn');
-        this.navcpi2S2Button = document.getElementsByClassName('2cpiS2Btn');
+        this.navcpi2S2Button = document.getElementsByClassName('2cpiS2Btn');//Some shall be undefined
 
         //ENTRY
         this.entriesCtn = document.getElementById('entry_ctn');
@@ -186,7 +114,7 @@ class Interface{
 
         //ImportData The INIT
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        Router.importData(...navShortcutsButtonLinks[0], this.update.bind(this, true));
+        Router.importData(...navShortcutsButtonLinks[0], this.update.bind(this, true), schoolID);
 
     }
 
@@ -202,7 +130,7 @@ class Interface{
 
             btn.addEventListener('click', ()=>{
 
-                Router.importData(...navShortcutsButtonLinks[i], self.update.bind(self, true));
+                Router.importData(...navShortcutsButtonLinks[i], self.update.bind(self, true), schoolID);
 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -218,7 +146,7 @@ class Interface{
 
             btn.addEventListener('click', ()=>{
 
-                Router.importData(...navOurChoiceButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...navOurChoiceButtonsLinks[i], self.update.bind(self, true), schoolID);
 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -234,7 +162,7 @@ class Interface{
 
             btn.addEventListener('click', ()=>{
 
-                Router.importData(...cpi1TButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...cpi1TButtonsLinks[i], self.update.bind(self, true), schoolID);
 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -250,7 +178,7 @@ class Interface{
 
             btn.addEventListener('click', ()=>{
 
-                Router.importData(...cpi1S1ButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...cpi1S1ButtonsLinks[i], self.update.bind(self, true), schoolID);
                 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -267,7 +195,7 @@ class Interface{
         
             btn.addEventListener('click', ()=>{
         
-                Router.importData(...cpi1S2ButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...cpi1S2ButtonsLinks[i], self.update.bind(self, true), schoolID);
                 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -283,7 +211,7 @@ class Interface{
 
             btn.addEventListener('click', ()=>{
 
-                Router.importData(...cpi2TButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...cpi2TButtonsLinks[i], self.update.bind(self, true), schoolID);
 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -299,7 +227,7 @@ class Interface{
 
             btn.addEventListener('click', ()=>{
 
-                Router.importData(...cpi2S1ButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...cpi2S1ButtonsLinks[i], self.update.bind(self, true), schoolID);
                 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');
@@ -316,7 +244,7 @@ class Interface{
         
             btn.addEventListener('click', ()=>{
         
-                Router.importData(...cpi2S2ButtonsLinks[i], self.update.bind(self, true));
+                Router.importData(...cpi2S2ButtonsLinks[i], self.update.bind(self, true), schoolID);
                 
                 this.selectedNavButton.removeAttribute('id');
                 btn.setAttribute('id', 'selectedNavButton');

@@ -50,6 +50,11 @@ header nav{
     padding-right: 15px;
 }
 
+.nav-btn a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 /*************************MAIN**************************************/
 main{
     display: flex;

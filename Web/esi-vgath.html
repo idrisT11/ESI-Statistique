@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="stylePage.css" media="screen and (min-width:900px)">
+    <link rel="stylesheet" href="stylePageMobile.css" media="screen and (max-width:900px)">
+    <title>ESI Statistiques</title>
+</head>
+<body>
+     
+    <header>
+        <h1>ESI-STAT</h1>
+        <nav>
+
+            <a href="./esi-sba.html" class="nav-btn"><button class="nav-btn"> ESI-SBA </button></a>
+
+            <a href="./esi-vgath.html" class="nav-btn"><button class="nav-btn"> ESTIN </button></a>
+
+        </nav>
+    </header>
+    
+
+    <main>
+
+
+        <nav id="navigation">
+            <h3>Shortcuts :</h3>
+            <button class="shortcutsBtn" id="selectedNavButton">1CPI : 1° Semmeter  </button>
+            <button class="shortcutsBtn">1CPI : 2° Semmeter  </button>
+
+            <h3>Our choice :</h3>
+            <button class="ourChoiceBtn">1CPI : First Semmeter <strong>Analyse</strong> </button>
+            <button class="ourChoiceBtn">1CPI : Second Semmeter <strong>Analyse</strong> </button>
+            <button class="ourChoiceBtn">1CPI : First Semmeter <strong>Algorithmic</strong> </button>
+            <button class="ourChoiceBtn">1CPI : Second Semmeter <strong>Electronique</strong> </button>
+
+            <h3>The full Base:</h3>
+            <h4>1CPI : </h4>
+            <h5>▶Yearly:</h5>
+            <button class="1cpiTBtn">Générale</button>
+            <h5>▶S1:</h5>
+            <button class="1cpiS1Btn">Générale</button>
+            <button class="1cpiS1Btn">Analyse</button>
+            <button class="1cpiS1Btn">Algèbre</button>
+            <button class="1cpiS1Btn">Algorithme</button>
+            <button class="1cpiS1Btn">Architecture</button>
+            <button class="1cpiS1Btn">Electrecité</button>
+            <button class="1cpiS1Btn">Système</button>
+            <button class="1cpiS1Btn">TEE</button>
+            <button class="1cpiS1Btn">Bureautique et Web</button>
+
+            <h5>▶S2:</h5>
+            <button class="1cpiS2Btn">Générale</button>
+            <button class="1cpiS2Btn">Analyse</button>
+            <button class="1cpiS2Btn">Algèbre</button>
+            <button class="1cpiS2Btn">Algorithme</button>
+            <button class="1cpiS2Btn">Electronique</button>
+            <button class="1cpiS2Btn">Système</button>
+            <button class="1cpiS2Btn">TEO</button>
+            <button class="1cpiS2Btn">Mécanique</button>
+            <button class="1cpiS2Btn">Anglais</button>
+
+
+        </nav>
+
+        <div id="app">
+            <div id="screen">
+                <svg id="graph"  width="100%">
+                    <rect width="100%" height="100%" fill="#FAFAFE"></rect>
+                </svg>
+
+            </div>
+
+            <div id="Interface">
+                <div id="precision_button_ctn">
+                        <!--<button class="precision_buttons">0.25</button>-->
+                        <button class="precision_buttons">0.5</button>
+                        <button class="precision_buttons">1</button>
+                        <button class="precision_buttons" id="selected_precision_button">2</button>
+                        <button class="precision_buttons">5</button>
+                        <button class="precision_buttons">10</button>
+                </div>
+                
+                <div id="graph_mode_ctn">
+                    <label id="LINE_GRAPH_MODE_LBL"> 
+                        <input type="radio" id="LINE_GRAPH_MODE" value="1" class="radio_img">
+                        <img src="./svgAttr/line-graph.svg" />
+                    </label>
+                    
+                    <label id="BAR_GRAPH_MODE_LBL">
+                        <input type="radio" id="BAR_GRAPH_MODE" value="0" class="radio_img" checked>
+                        <img src="./svgAttr/bar-graph.svg"/>
+                    </label>
+                
+                </div>
+
+                <div id="cumulative_ctn">
+                    <h4>Graph's type:</h4>
+
+                    <button class="radio_type_cumu" value="0" id="selected_type_button">Repartition</button>
+                    <button class="radio_type_cumu" value="1">Cummulatif</button>
+
+                </div>
+
+                <div id="entryArray_ctn">
+                    <h4>Entry:</h4>
+
+                    <div id="entry_ctn">
+
+                    </div>
+                </div>
+            
+            
+        
+        </div>
+
+        </div>
+
+    </main>
+    <script>
+        window.scrollTo(0,1);
+        let school = 'VGATH';
+
+    </script>
+
+    <script src="./config/svgSizesConfig.js"></script>
+    <script src="./config/RouterDataVgath.js"></script>
+    <script src="./config/vgathDataDisponibility.js"></script>    
+
+    <script src="Router.js"></script>
+
+    <script src="Axes.js"></script>
+    <script src="Grapher.js"></script>
+    <script src="Interface.js"></script>
+    <script src="script.js"></script>
+
+    <script src="utils.js"></script>
+
+    <style>
+        body, html{
+            height: calc(100%);
+            margin: 0;
+            padding: 0;
+
+            height: 100%;
+            width: 100%;
+        }
+
+        /*======================SVG====================*/
+        #svg-line{
+            filter: drop-shadow(  -2px 2px 3px black);
+        }
+        #svg-axe-label{
+            text-decoration: underline;
+        }
+
+        .graphRect:hover{
+            filter: drop-shadow(  0px 0px 10px black);
+
+        }
+
+        .graphLine{
+            filter: drop-shadow(  -0px 0px 10px rgba(0, 0, 0, 0.25));
+        }
+
+        .graphPoint:hover{
+            fill: whitesmoke;
+            stroke-width: 0.1%;
+        }
+
+
+    </style>
+
+</body>
+</html>

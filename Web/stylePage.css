@@ -39,6 +39,7 @@ header nav{
     color: whitesmoke;
     display: inline-block;
     height: 100%;
+    
 
     font-family: Champagne_and_Limousines;
 
@@ -48,7 +49,11 @@ header nav{
 
     padding-left: 15px;
     padding-right: 15px;
+
+    cursor: pointer;
 }
+
+
 /*************************MAIN**************************************/
 main{
     display: flex;
