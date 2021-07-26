@@ -76,23 +76,23 @@ class Grapher{
         this.axes.precision = this.precision;
     }
 
-    draw(){
+    draw(toolTipDispCallback, toolTipHideCallback){
         this.clearScreen();
 
         let echelons = this.axes.draw(true);
 
         if ( this.graphAffichage == GRAPH_AFFICHAGE.BAR ) 
-            this.drawRectGraph( echelons.x, echelons.y );
+            this.drawRectGraph( echelons.x, echelons.y, toolTipDispCallback , toolTipHideCallback);
 
         else if ( this.graphAffichage == GRAPH_AFFICHAGE.LIGNE ) 
-            this.drawLineGraph( echelons.x, echelons.y );
+            this.drawLineGraph( echelons.x, echelons.y, toolTipDispCallback , toolTipHideCallback);
 
         //this.axes.drawAxes();
         //this.axes.drawEchelons();
 
     }
 
-    drawRectGraph(echelon_X_table, echelon_Y_table){
+    drawRectGraph(echelon_X_table, echelon_Y_table, toolTipDispCallback , toolTipHideCallback){
 
         
         var rect_tab_svg = new Array( 20 / this.precision );
@@ -114,6 +114,7 @@ class Grapher{
             rect_tab_svg[i].setAttribute('fill', '#00c9e5');
             rect_tab_svg[i].setAttribute('stroke', '#00adcc');
             rect_tab_svg[i].setAttribute('stroke-width', '0.4%');
+
             //rect_tab_svg[i].setAttribute('stroke-dasharray', (width + height) + '% ' + width+'%');
 
 
@@ -122,7 +123,12 @@ class Grapher{
             rect_tab_svg[i].setAttribute('width', width + '%');
             rect_tab_svg[i].setAttribute('height', height + '%');
             
-            
+            rect_tab_svg[i].addEventListener('mouseenter', ()=>{
+                toolTipDispCallback(x, POS_ZERO_GRAPH.y - height, width, this.graphInput[i])
+            })
+            rect_tab_svg[i].addEventListener('mouseleave', ()=>{
+                toolTipHideCallback()
+            })
 
             this.screen.appendChild(rect_tab_svg[i]);
         }
@@ -141,7 +147,7 @@ class Grapher{
         }
     }
 
-    drawLineGraph(echelon_X_table, echelon_Y_table)
+    drawLineGraph(echelon_X_table, echelon_Y_table, toolTipDispCallback , toolTipHideCallback)
     {
 
         var point_tab_svg = new Array( 20 / this.precision );

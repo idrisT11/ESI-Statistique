@@ -101,6 +101,8 @@ for fileName in files:
 
 	raw_table = getRawTable(regions_raw)
 
+	print(raw_table)
+
 	table = polishTables(raw_table)
 
 	exportTable(fileName.replace('.pdf', '.json'), table)

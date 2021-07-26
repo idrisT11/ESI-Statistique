@@ -3,6 +3,7 @@
 class Interface{
     constructor()
     {
+        this.toolTip = new ToolTip();
         this.grapher = new Grapher();
 
         this.graphTable = null;
@@ -267,7 +268,7 @@ class Interface{
         this.setGrapher();
 
         this.grapher.update();
-        this.grapher.draw();
+        this.grapher.draw(this.toolTip.displayModal, this.toolTip.hideModal);
     }
 
     setGrapher(){
