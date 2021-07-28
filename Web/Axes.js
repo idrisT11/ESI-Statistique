@@ -258,8 +258,10 @@ class Axes{
         labelAxeY.setAttribute('x', (label_axe_Y_posX + 2.5) + '%');
         labelAxeY.setAttribute('y', (POS_OY_GRAPH.y - 1) + '%');
 
-        this.screen.appendChild(labelAxeX);
         this.screen.appendChild(labelAxeY);
+        
+        if (!isMobile)
+            this.screen.appendChild(labelAxeX);
     }
 
     drawReferenceLines(echelon_X_table, echelon_Y_table){

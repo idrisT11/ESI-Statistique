@@ -7,7 +7,9 @@ let POS_ZERO_GRAPH,
     axeY_label_fontsize,
     axeX_label_fontsize;
 
-if(screen.width < 900)
+let isMobile = (screen.width < 900);
+
+if(isMobile)
 {
     POS_ZERO_GRAPH = {
         x: 8,
